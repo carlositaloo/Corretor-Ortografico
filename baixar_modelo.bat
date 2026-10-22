@@ -1,13 +1,12 @@
 @echo off
-chcp 65001 >nul
 rem Baixa o modelo de IA para a pasta modelos\ e liga ele no configuracoes.json.
 rem Usado pela versao .exe, que nao tem Python. Precisa do Windows 10 ou mais novo.
 cd /d "%~dp0"
 
 echo.
-echo  Qual IA você quer baixar?
+echo  Qual IA voce quer baixar?
 echo.
-echo   1) Gemma 3 4B      (~2,5 GB)  RECOMENDADO - escreve melhor em português
+echo   1) Gemma 3 4B      (~2,5 GB)  RECOMENDADO - escreve melhor em portugues
 echo   2) Qwen 2.5 1.5B   (~1 GB)    mais leve, para PC fraco - erra mais
 echo.
 choice /c 12 /n /m " Digite 1 ou 2: "
@@ -21,7 +20,7 @@ if errorlevel 2 (
 
 if not exist modelos mkdir modelos
 if exist "modelos\%ARQ%" (
-  echo O modelo já está baixado.
+  echo O modelo ja esta baixado.
   goto ativar
 )
 
@@ -41,5 +40,5 @@ rem Aponta o configuracoes.json para o modelo escolhido.
 powershell -NoProfile -Command "$f='configuracoes.json'; $c=Get-Content $f -Raw -Encoding UTF8 | ConvertFrom-Json; $c.local.modelo='modelos/%ARQ%'; [IO.File]::WriteAllText((Resolve-Path $f), ($c | ConvertTo-Json -Depth 5), (New-Object Text.UTF8Encoding $false))"
 echo.
 echo Pronto! Modelo ativo: %ARQ%
-echo Agora abra o Corretor.exe. Se ele já estiver aberto, feche e abra de novo.
+echo Agora abra o Corretor.exe. Se ele ja estiver aberto, feche e abra de novo.
 pause
