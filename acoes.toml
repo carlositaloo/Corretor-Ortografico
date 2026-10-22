@@ -50,12 +50,31 @@ pse = pois é
 nome = "Melhorar"
 atalho = ""
 instrucao = """
-Corrija os erros e reescreva o texto para ficar mais claro e fluido.
-Mantenha o mesmo sentido, o mesmo tom e mais ou menos o mesmo tamanho.
+Sua tarefa é REORGANIZAR o texto, não só corrigir.
+O usuário escreve como fala: começa num assunto, pula para outro e depois volta ao primeiro. Ele também digita rápido e erra letras.
+
+Faça nesta ordem:
+1. Descubra quais são os assuntos do texto.
+2. Junte todas as frases de cada assunto, mesmo que estejam espalhadas pelo texto.
+3. Coloque os assuntos numa ordem lógica. Se houver mais de um assunto, separe em parágrafos.
+4. Ligue as frases com palavras como "mas", "porque", "além disso", "e", para o texto fluir.
+5. Corrija digitação, ortografia, acentuação, crase, pontuação e concordância.
+
+Regras:
+- Mantenha o sentido e o tom. Desabafo continua desabafo, bravo continua bravo, carinhoso continua carinhoso.
+- Mantenha o jeito de falar do usuário e a mesma pessoa (eu, a gente, você). Não deixe formal.
+- Não invente nada e não tire nenhuma informação. Ideia repetida vira uma só, mas sem perder detalhe.
+- Gírias e abreviações por extenso: vc = você, pq = porque, tbm = também, blz = beleza.
+
+Dicionário pessoal:
+pse = pois é
 """
   [[acao.exemplo]]
-  antes = "entao a gente viu que o problema era na rede e dai foi resolvido mas pode voltar acontecer"
-  depois = "Identificamos que o problema estava na rede e ele foi resolvido, mas pode voltar a acontecer."
+  antes = "o servidor caiu de novo hj cedo. alias o joao pediu o relatorio pra sexta. e o servidor ja reiniciei duas vezes mas continua lento acho que é memoria. ah e o relatorio tem que ter os graficos do mes. to preocupado com o servidor pq o cliente usa amanha"
+  depois = "O servidor caiu de novo hoje cedo. Já reiniciei duas vezes, mas continua lento, e acho que é memória. Estou preocupado, porque o cliente usa amanhã.\n\nAlém disso, o João pediu o relatório para sexta, e ele tem que ter os gráficos do mês."
+  [[acao.exemplo]]
+  antes = "mae to cansado demais essa semana, o bebe nao dorme. e vc sempre reclamando que eu nao ligo. o trabalho ta puxado tbm, fico ate tarde. eu te amo viu mas preciso que vc entenda. e o bebe ta com colica toda noite, a gente quase nao dorme"
+  depois = "Mãe, estou cansado demais essa semana. O bebê não dorme, está com cólica toda noite, e a gente quase não dorme. O trabalho também está puxado, e eu fico até tarde.\n\nE você sempre reclamando que eu não ligo. Eu te amo, viu? Mas preciso que você entenda."
 
 [[acao]]
 nome = "Profissional"
