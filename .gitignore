@@ -1,0 +1,19 @@
+# Ambiente Python
+.venv/
+__pycache__/
+*.pyc
+
+# Gerados pelo PyInstaller (o .exe vai na aba Releases, não no código)
+build/
+dist/
+*.spec
+
+# Arquivos grandes baixados pelo preparar.py
+motor/
+modelos/
+*.gguf
+*.parcial
+
+# Coisas locais
+logs/
+backups/

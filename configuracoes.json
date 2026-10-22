@@ -1,0 +1,20 @@
+{
+  "atalho_menu": "ctrl+space",
+  "provedor": "local",
+  "temperatura": 0.2,
+  "tema": "escuro",
+  "restaurar_area_de_transferencia": true,
+  "soltar_ia_apos_minutos": 0,
+  "local": {
+    "motor": "motor/llama-server.exe",
+    "modelo": "modelos/google_gemma-3-4b-it-Q4_K_M.gguf",
+    "porta": 8089,
+    "camadas_na_placa": 99,
+    "tamanho_contexto": 4096
+  },
+  "online": {
+    "url": "https://api.openai.com/v1",
+    "chave": "",
+    "modelo": "gpt-4o-mini"
+  }
+}
