@@ -53,16 +53,15 @@ O Writing Tools é um ótimo app, multiplataforma e para qualquer idioma. O Corr
 ### 🪟 Windows
 
 1. Vá na página de [Releases](../../releases) e baixe o `Corretor.zip` mais novo.
-2. **Antes de extrair:** clique com o botão direito no `Corretor.zip` > **Propriedades** > marque **Desbloquear** > **OK**. (Veja "O Windows bloqueou?" mais abaixo.)
-3. Extraia numa pasta sua (recomendado: `Documentos`).
-4. Dê dois cliques em `baixar_modelo.bat` e escolha a IA (só na primeira vez):
+2. Extraia numa pasta sua (recomendado: `Documentos`).
+3. Clique com o botão direito no `baixar_modelo.bat` > **Executar como administrador** e escolha a IA (só na primeira vez). (Veja "O Windows bloqueou?" mais abaixo.)
 
 | Opção | Tamanho | Para quem |
 |---|---|---|
 | **1) Gemma 3 4B** ⭐ recomendado | ~2,5 GB | Escreve melhor em português |
 | 2) Qwen 2.5 1.5B | ~1 GB | PC fraco ou com pouca memória. Erra mais |
 
-5. Abra o `Corretor.exe`. O ícone "Aa" aparece perto do relógio.
+4. Abra o `Corretor.exe`. O ícone "Aa" aparece perto do relógio.
 
 _Obs.: o app é portátil e guarda as configurações na própria pasta. Não extraia em `Arquivos de Programas`, senão ele não consegue salvar._
 
@@ -74,17 +73,15 @@ _O antivírus pode estranhar um `.exe` novo. É alarme falso, mas talvez peça p
 
 No Windows 11, o **Controle Inteligente de Aplicativos** (Smart App Control) bloqueia arquivos baixados da internet que não têm assinatura digital paga. A mensagem só tem "OK" ou "Procurar um aplicativo na Microsoft Store". Não é vírus: o Corretor só não é assinado.
 
-Para liberar:
+**Jeito mais fácil:** clique com o botão direito no arquivo > **Executar como administrador**.
+
+**Quer ver o que tem dentro do `.bat` antes?** O Windows também bloqueia o "Editar". Abra o **Bloco de Notas como administrador** e use **Arquivo > Abrir** para abrir o `baixar_modelo.bat`.
+
+**Outro jeito (libera a pasta toda de uma vez):**
 1. Apague a pasta que você extraiu.
 2. Clique com o botão direito no `Corretor.zip` > **Propriedades**.
 3. Embaixo, marque **Desbloquear** e clique em **OK**.
-4. Extraia de novo e rode o `baixar_modelo.bat`.
-
-Se o seu Windows não mostrar a caixa **Desbloquear**, abra o PowerShell na pasta extraída e rode:
-
-```
-Get-ChildItem -Recurse | Unblock-File
-```
+4. Extraia de novo.
 
 Não precisa desligar o Controle Inteligente de Aplicativos.
 
