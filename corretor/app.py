@@ -15,7 +15,7 @@ from PySide6.QtGui import QAction, QColor, QFont, QIcon, QPainter, QPixmap
 from PySide6.QtWidgets import QApplication, QMenu, QMessageBox, QSystemTrayIcon
 
 from . import teclado
-from .config import RAIZ, Acao, carregar_acoes, carregar_config, salvar_acoes, salvar_config
+from .config import COMO_BAIXAR, RAIZ, Acao, carregar_acoes, carregar_config, salvar_acoes, salvar_config
 from .ia import ClienteIA, ErroIA, alternar_maiusculas
 from .janela_config import JanelaConfig
 from .janelas import Aviso, Menu, aplicar_tema
@@ -142,7 +142,7 @@ class Corretor:
             except FileNotFoundError as e:
                 log.error("%s", e)
                 self._ia_caiu("Motor ou modelo faltando")
-                self.sinais.aviso.emit("Motor ou modelo faltando. Rode preparar.py", True, 6000)
+                self.sinais.aviso.emit(f"Motor ou modelo faltando. {COMO_BAIXAR}", True, 6000)
                 return False
             if not self.motor.esperar_pronto():
                 self._ia_caiu("A IA não ligou. Veja logs/motor.log")

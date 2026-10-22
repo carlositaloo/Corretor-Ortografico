@@ -14,6 +14,8 @@ if getattr(sys, "frozen", False):
     RAIZ = Path(sys.executable).resolve().parent
 else:
     RAIZ = Path(__file__).resolve().parent.parent
+# O que dizer ao usuário para baixar o modelo: no .exe não tem Python.
+COMO_BAIXAR = "Rode baixar_modelo.bat" if getattr(sys, "frozen", False) else "Rode: python preparar.py"
 ARQ_CONFIG = RAIZ / "configuracoes.json"
 ARQ_ACOES = RAIZ / "acoes.toml"
 PASTA_LOGS = RAIZ / "logs"

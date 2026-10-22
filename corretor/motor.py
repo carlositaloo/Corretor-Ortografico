@@ -7,7 +7,7 @@ import subprocess
 import time
 import urllib.request
 
-from .config import PASTA_LOGS, caminho
+from .config import COMO_BAIXAR, PASTA_LOGS, caminho
 
 log = logging.getLogger(__name__)
 
@@ -43,9 +43,9 @@ class Motor:
         exe = caminho(self.cfg["motor"])
         modelo = caminho(self.cfg["modelo"])
         if not exe.exists():
-            raise FileNotFoundError(f"Motor não encontrado: {exe}\nRode: python preparar.py")
+            raise FileNotFoundError(f"Motor não encontrado: {exe}\n{COMO_BAIXAR}")
         if not modelo.exists():
-            raise FileNotFoundError(f"Modelo não encontrado: {modelo}\nRode: python preparar.py")
+            raise FileNotFoundError(f"Modelo não encontrado: {modelo}\n{COMO_BAIXAR}")
 
         args = [
             str(exe),

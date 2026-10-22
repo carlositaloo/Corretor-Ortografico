@@ -147,7 +147,7 @@ class JanelaConfig(QDialog):
             self.c_modelo.addItem(f"{atual} (não encontrado)", atual)
         self.c_modelo.setCurrentIndex(max(0, self.c_modelo.findData(atual)))
         fl.addRow("Modelo:", self.c_modelo)
-        fl.addRow("", _nota("Para baixar outro modelo, use o preparar.py."))
+        fl.addRow("", _nota("Para baixar outro modelo, use o baixar_modelo.bat (ou o preparar.py)."))
 
         self.c_camadas = QSpinBox()
         self.c_camadas.setRange(0, 999)
