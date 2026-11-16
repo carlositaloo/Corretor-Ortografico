@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import subprocess
 import time
 import urllib.request
@@ -13,6 +14,29 @@ log = logging.getLogger(__name__)
 
 # Flag do Windows para o processo não abrir janela de console.
 SEM_JANELA = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+
+
+def tirar_marca_internet(pasta) -> int:
+    """Tira a marca "veio da internet" (Zone.Identifier) dos arquivos da pasta.
+
+    O Windows 11 (Controle Inteligente de Aplicativos) pode bloquear o
+    llama-server.exe quando ele tem essa marca. É o mesmo que "Desbloquear"
+    nas Propriedades do arquivo. Só mexe na pasta do próprio motor.
+    """
+    tirados = 0
+    try:
+        arquivos = [a for a in pasta.iterdir() if a.is_file()]
+    except OSError:
+        return 0
+    for arq in arquivos:
+        try:
+            os.remove(f"{arq}:Zone.Identifier")
+            tirados += 1
+        except OSError:
+            pass  # não tinha a marca
+    if tirados:
+        log.info("Tirei a marca de internet de %s arquivo(s) do motor.", tirados)
+    return tirados
 
 
 class Motor:
@@ -58,15 +82,25 @@ class Motor:
         ]
         PASTA_LOGS.mkdir(exist_ok=True)
         self._arq_log = open(PASTA_LOGS / "motor.log", "w", encoding="utf-8", errors="replace")
+        tirar_marca_internet(exe.parent)
         log.info("Ligando motor: %s", " ".join(args))
-        self.processo = subprocess.Popen(
-            args,
-            cwd=str(exe.parent),
-            stdout=self._arq_log,
-            stderr=subprocess.STDOUT,
-            stdin=subprocess.DEVNULL,
-            creationflags=SEM_JANELA,
-        )
+        try:
+            self.processo = subprocess.Popen(
+                args,
+                cwd=str(exe.parent),
+                stdout=self._arq_log,
+                stderr=subprocess.STDOUT,
+                stdin=subprocess.DEVNULL,
+                creationflags=SEM_JANELA,
+            )
+        except OSError as erro:
+            if getattr(erro, "winerror", None) == 4551:
+                raise RuntimeError(
+                    "O Windows bloqueou o motor da IA (Controle Inteligente de Aplicativos).\n"
+                    "Feche o Corretor, clique com o botão direito no baixar_modelo.bat > "
+                    "Executar como administrador, e abra o Corretor de novo."
+                ) from erro
+            raise
 
     def esperar_pronto(self, limite_s: float = 120) -> bool:
         """Espera o modelo terminar de carregar."""

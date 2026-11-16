@@ -144,6 +144,11 @@ class Corretor:
                 self._ia_caiu("Motor ou modelo faltando")
                 self.sinais.aviso.emit(f"Motor ou modelo faltando. {COMO_BAIXAR}", True, 6000)
                 return False
+            except RuntimeError as e:
+                log.error("%s", e)
+                self._ia_caiu("Windows bloqueou o motor")
+                self.sinais.aviso.emit(str(e), True, 9000)
+                return False
             if not self.motor.esperar_pronto():
                 self._ia_caiu("A IA não ligou. Veja logs/motor.log")
                 self.sinais.aviso.emit("A IA não ligou. Veja logs/motor.log", True, 6000)
